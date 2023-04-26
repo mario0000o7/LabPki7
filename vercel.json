@@ -2,9 +2,9 @@
   "version": 2,
   "name": "LabPki7",
   "builds": [
-    { "src": "./bin/www", "use": "@vercel/node" }
+    { "src": "/bin/www", "use": "@vercel/node" }
   ],
   "routes": [
-    { "src": "./routes/(.*)", "dest": "./bin/www" }
+    { "src": "/routes/(.*)", "dest": "/bin/www" }
   ]
 }
