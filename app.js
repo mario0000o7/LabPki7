@@ -54,10 +54,8 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
-app.listen(3000, () => {
-  console.log('Example app listening on port 3000!');
-});
+const port = process.env.port || 3000
+app.listen(port, () => console.log(`Server running at ${port}`));
 
-
-module.exports = app;
+// module.exports = app;
 
