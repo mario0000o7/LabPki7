@@ -1,5 +1,5 @@
 # LabPki7
-* [Vercel](https://lab-pki7.vercel.app)
+* [Azure](https://labpki7.azurewebsites.net)
 
 
 ## Installation
