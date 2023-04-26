@@ -4,7 +4,7 @@
  * Module dependencies.
  */
 
-const {app} = require('../app');
+const app = require('../app');
 var debug = require('debug')('labpki7:server');
 var http = require('http');
 
