@@ -1,0 +1,89 @@
+extends layout
+
+block content
+
+
+
+
+  link(href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous")
+  script(src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous")
+  script.
+    function showModal() {
+      var myModal = new bootstrap.Modal(document.getElementById('myModal'), {
+        keyboard: false
+      })
+      myModal.show()
+    }
+    function redirect() {
+      window.location.href = "/"
+    }
+
+  #myModal.modal.fade(tabindex='-1')
+    .modal-dialog
+      .modal-content
+        .modal-header
+          h5.modal-title Problem
+          button.btn-close(type='button' data-bs-dismiss='modal')
+        .modal-body
+          p Brak połączenia z bazą danych
+          p.text-secondary
+            small Skontaktuj się z administratorem
+        .modal-footer
+          button.btn.btn-secondary(type='button' data-bs-dismiss='modal' onclick='redirect()') OK
+
+
+
+
+
+
+  nav.navbar.navbar-expand-lg.navbar-light.bg-light
+    .container-fluid
+      a.navbar-brand(href='/') Brand
+      button.navbar-toggler(type='button' data-bs-toggle='collapse' data-bs-target='#navbarCollapse')
+        span.navbar-toggler-icon
+      #navbarCollapse.collapse.navbar-collapse
+        .navbar-nav
+          a.nav-item.nav-link.active(href='/') Home
+
+        if(error===undefined&&user.loggedIn)
+          .navbar-nav.ms-auto
+            a.nav-item.nav-link.active(href='/') User: #{user.name}
+
+
+
+  h1 LabPki7!
+  if (error === true)
+    script.
+      showModal()
+  else
+    if (user.loggedIn)
+      p Welcome #{user.name}!
+
+
+      table.table
+        thead
+          tr
+            th #
+            th Name
+            th Joined
+            th Last Visit
+            th Counter
+        tbody
+        for item in data
+            tr
+              td #{item.id}
+              td #{item.name}
+              td #{item.joined}
+              td #{item.lastvisit}
+              td #{item.counter}
+
+
+
+    else
+      p Please login
+      form(action="/login" method="post")
+        label(for="name" id="name") Name:
+        input(type="text" name="name")
+        label(for="password" id="password") Password:
+        input(type="password" name="password")
+        input(type="submit" value="Submit")
